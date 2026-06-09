@@ -16,6 +16,8 @@
 - 在 Finder 中打开目标目录
 - 下钻查看子目录
 - 将可清理内容移入废纸篓
+- 对高风险路径启用删除保护
+- 并发扫描常见路径，减少整体等待时间
 
 ### 界面预览
 
@@ -44,6 +46,12 @@ python3 mac_disk_analyzer.py
 http://127.0.0.1:18765
 ```
 
+### 测试
+
+```bash
+python3 -m unittest discover -s tests
+```
+
 ### 使用建议
 
 - `Safe to delete / 可安全删除`：通常是缓存文件，删除后会自动重建。
@@ -56,6 +64,7 @@ http://127.0.0.1:18765
 - 本工具不会自动执行永久删除，删除动作是“移入废纸篓”。
 - 对系统目录、数据库目录、云同步目录和聊天记录目录，务必谨慎。
 - 首次扫描大目录时可能需要几十秒。
+- 标记为“不建议直接删除”的路径会被后端和界面同时保护，不能直接移入废纸篓。
 
 ---
 
@@ -73,6 +82,8 @@ http://127.0.0.1:18765
 - Open target folders in Finder
 - Drill down into subdirectories
 - Move removable content to Trash
+- Protect high-risk paths from deletion
+- Scan common paths concurrently to reduce wait time
 
 ### Screenshots
 
@@ -101,6 +112,12 @@ The app starts a local web server at:
 http://127.0.0.1:18765
 ```
 
+### Test
+
+```bash
+python3 -m unittest discover -s tests
+```
+
 ### Guidance
 
 - `Safe to delete`: Usually cache files that apps can regenerate.
@@ -113,3 +130,4 @@ http://127.0.0.1:18765
 - The tool does not permanently delete items. It moves them to Trash.
 - Be careful with system folders, database directories, cloud sync folders, and messaging data.
 - Large directory scans may take tens of seconds.
+- Paths marked as `Not recommended` are protected by both the API and UI and cannot be moved to Trash directly.
